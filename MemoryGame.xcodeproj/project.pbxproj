@@ -13,6 +13,7 @@
 		229A2B361CA9D88000EFE147 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229A2B341CA9D88000EFE147 /* Main.storyboard */; };
 		229A2B381CA9D88000EFE147 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 229A2B371CA9D88000EFE147 /* Assets.xcassets */; };
 		229A2B3B1CA9D88000EFE147 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229A2B391CA9D88000EFE147 /* LaunchScreen.storyboard */; };
+		229A2B471CA9DBCA00EFE147 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 229A2B461CA9DBCA00EFE147 /* Card.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		229A2B371CA9D88000EFE147 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		229A2B3A1CA9D88000EFE147 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		229A2B3C1CA9D88000EFE147 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		229A2B451CA9DBCA00EFE147 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		229A2B461CA9DBCA00EFE147 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +61,8 @@
 		229A2B2A1CA9D88000EFE147 /* MemoryGame */ = {
 			isa = PBXGroup;
 			children = (
-				229A2B2E1CA9D88000EFE147 /* AppDelegate.h */,
-				229A2B2F1CA9D88000EFE147 /* AppDelegate.m */,
+				229A2B451CA9DBCA00EFE147 /* Card.h */,
+				229A2B461CA9DBCA00EFE147 /* Card.m */,
 				229A2B311CA9D88000EFE147 /* ViewController.h */,
 				229A2B321CA9D88000EFE147 /* ViewController.m */,
 				229A2B341CA9D88000EFE147 /* Main.storyboard */,
@@ -74,6 +77,8 @@
 		229A2B2B1CA9D88000EFE147 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				229A2B2E1CA9D88000EFE147 /* AppDelegate.h */,
+				229A2B2F1CA9D88000EFE147 /* AppDelegate.m */,
 				229A2B2C1CA9D88000EFE147 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -153,6 +158,7 @@
 				229A2B331CA9D88000EFE147 /* ViewController.m in Sources */,
 				229A2B301CA9D88000EFE147 /* AppDelegate.m in Sources */,
 				229A2B2D1CA9D88000EFE147 /* main.m in Sources */,
+				229A2B471CA9DBCA00EFE147 /* Card.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
