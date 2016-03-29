@@ -18,14 +18,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gt2-en-913" customClass="Card">
-                                <rect key="frame" x="12" y="57" width="86" height="117"/>
+                                <rect key="frame" x="12" y="61" width="86" height="117"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="2" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Pt-Ii-WNQ" customClass="Card">
-                                <rect key="frame" x="100" y="57" width="86" height="117"/>
+                                <rect key="frame" x="100" y="61" width="86" height="117"/>
                             </imageView>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="4" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mTR-d3-qaj" customClass="Card">
-                                <rect key="frame" x="189" y="57" width="86" height="117"/>
+                                <rect key="frame" x="189" y="61" width="86" height="117"/>
+                            </imageView>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="5" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70i-6l-BMq" customClass="Card">
+                                <rect key="frame" x="277" y="61" width="86" height="117"/>
                             </imageView>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="3" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nea-fT-VS1" customClass="Card">
                                 <rect key="frame" x="12" y="182" width="86" height="117"/>
@@ -40,28 +43,28 @@
                                 <rect key="frame" x="277" y="182" width="86" height="117"/>
                             </imageView>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="6" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QEh-ya-QvE" customClass="Card">
-                                <rect key="frame" x="12" y="305" width="86" height="117"/>
+                                <rect key="frame" x="12" y="303" width="86" height="117"/>
                             </imageView>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="5" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7TS-i2-qqO" customClass="Card">
-                                <rect key="frame" x="100" y="305" width="86" height="117"/>
+                                <rect key="frame" x="100" y="303" width="86" height="117"/>
                             </imageView>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="3" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHU-4z-3ra" customClass="Card">
-                                <rect key="frame" x="189" y="305" width="86" height="117"/>
+                                <rect key="frame" x="189" y="303" width="86" height="117"/>
                             </imageView>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="6" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PiA-2C-VGJ" customClass="Card">
-                                <rect key="frame" x="277" y="305" width="86" height="117"/>
+                                <rect key="frame" x="277" y="303" width="86" height="117"/>
                             </imageView>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="8" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jKc-wO-ik7" customClass="Card">
-                                <rect key="frame" x="12" y="430" width="86" height="117"/>
+                                <rect key="frame" x="12" y="424" width="86" height="117"/>
                             </imageView>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="2" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iah-y1-sEJ" customClass="Card">
-                                <rect key="frame" x="100" y="430" width="86" height="117"/>
+                                <rect key="frame" x="100" y="424" width="86" height="117"/>
                             </imageView>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="7" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JDY-Sw-oJ1" customClass="Card">
-                                <rect key="frame" x="189" y="430" width="86" height="117"/>
+                                <rect key="frame" x="189" y="424" width="86" height="117"/>
                             </imageView>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="4" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="po2-hH-99X" customClass="Card">
-                                <rect key="frame" x="277" y="430" width="86" height="117"/>
+                                <rect key="frame" x="277" y="424" width="86" height="117"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xw2-uB-dIJ">
                                 <rect key="frame" x="14" y="592" width="348" height="65"/>
@@ -76,28 +79,35 @@
                                     <action selector="startNewGamePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nh2-PA-JPD"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total matched sets: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEB-qG-76n">
-                                <rect key="frame" x="13" y="555" width="349" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total matched sets: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEB-qG-76n">
+                                <rect key="frame" x="13" y="551" width="349" height="34"/>
                                 <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="21"/>
                                 <color key="textColor" red="0.28804849991637316" green="0.70426211349924583" blue="0.56192927058962372" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Best Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Acy-QM-Lbz">
-                                <rect key="frame" x="189" y="15" width="174" height="34"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Best Time:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Acy-QM-Lbz">
+                                <rect key="frame" x="175" y="20" width="188" height="34"/>
                                 <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="21"/>
                                 <color key="textColor" red="0.55315950140000003" green="0.84230297890000005" blue="0.83441621929999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGv-ff-fLC">
-                                <rect key="frame" x="12" y="15" width="174" height="34"/>
+                                <rect key="frame" x="12" y="20" width="174" height="34"/>
                                 <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="21"/>
                                 <color key="textColor" red="0.55315950140000003" green="0.84230297890000005" blue="0.83441621929999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="5" highlightedImage="backfade" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70i-6l-BMq" customClass="Card">
-                                <rect key="frame" x="277" y="57" width="86" height="117"/>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myq-Qd-NQK">
+                                <rect key="frame" x="289" y="551" width="73" height="30"/>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="21"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onResetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7q6-c6-htq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.3843137254901961" green="0.17254901960784313" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                     </view>

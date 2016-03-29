@@ -55,11 +55,18 @@
     self.currentTimeLabel.text = [self.defaults objectForKey:@"LastGameTime"];
     if ([self.defaults objectForKey:@"BestTime"]) {
         self.bestTimeLabel.text = [self.defaults objectForKey:@"BestTime"];
+        self.bestTimeLabel.hidden = NO;
+    } else {
+        self.bestTime = 500.0;
     }
-    
+
     //set up all cards
     self.checkingCardsArray = [NSMutableArray new];
     self.cardsArray = [[NSMutableArray alloc] initWithObjects: self.card1, self.card2, self.card3, self.card4, self.card5, self.card6, self.card7, self.card8, self.card9, self.card10, self.card11, self.card12, self.card13, self.card14, self.card15, self.card16, nil];
+//    for (Card *card in self.cardsArray) {
+//        card.layer.cornerRadius = 6;
+//        card.layer.masksToBounds = YES;
+//    }
 
     
     //make sure they're all face down
@@ -72,7 +79,7 @@
     //shuffle the cards
     [self shuffleCards];
     
-    self.startNewGameButton.layer.cornerRadius = 5;
+    self.startNewGameButton.layer.cornerRadius = 6;
     self.startNewGameButton.layer.masksToBounds = YES;
     
     [self createNewTimer];
@@ -146,6 +153,16 @@
     
 }
 
+- (IBAction)onResetButtonPressed:(UIButton *)sender {
+    
+    _ticks = 0.0;
+    self.bestTime = 500.0;
+    self.bestTimeLabel.hidden = YES;
+    self.totalMatchedSets = 0;
+    self.totalMatchedSetsLabel.text = [NSString stringWithFormat:@"Total matched sets: %i", self.totalMatchedSets];
+    [self createNewTimer];
+    
+}
 
 
 
@@ -185,7 +202,8 @@
         float timeForThisRound = self.ticks;
         if (timeForThisRound < self.bestTime) {
             self.bestTime = timeForThisRound;
-            self.bestTimeLabel.text = [NSString stringWithFormat:@"%f", self.bestTime];
+            self.bestTimeLabel.hidden = NO;
+            self.bestTimeLabel.text = [NSString stringWithFormat:@"Best Time:%.01f", self.bestTime];
             [self.defaults setObject:self.bestTimeLabel.text forKey:@"BestTime"];
             [self.defaults synchronize];
 
