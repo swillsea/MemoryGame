@@ -38,7 +38,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bestTimeLabel;
 @property NSTimer *timer;
 @property float ticks;
-@property NSString *bestScore;
+@property float bestTime;
 @property NSUserDefaults *defaults;
 
 
@@ -52,7 +52,6 @@
 
     //allows us to save and load information that is permanently stored in the device memory, regardless of app state
     self.defaults = [NSUserDefaults standardUserDefaults];
-
     self.currentTimeLabel.text = [self.defaults objectForKey:@"LastGameTime"];
     if ([self.defaults objectForKey:@"BestTime"]) {
         self.bestTimeLabel.text = [self.defaults objectForKey:@"BestTime"];
@@ -73,18 +72,22 @@
     //shuffle the cards
     [self shuffleCards];
     
-    
     self.startNewGameButton.layer.cornerRadius = 5;
     self.startNewGameButton.layer.masksToBounds = YES;
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1f
+    [self createNewTimer];
+    
+}
+
+-(void)createNewTimer {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval: 0.1f
                                                   target: self
                                                 selector: @selector(timerTick:)
                                                 userInfo: nil
                                                  repeats: YES];
-    
 }
 
+//this gives us the right counter
 - (void)timerTick:(NSTimer *)timer
 {
     _ticks += 0.1;
@@ -175,13 +178,26 @@
         !self.card14.isHighlighted &&
         !self.card15.isHighlighted &&
         !self.card16.isHighlighted) {
+     
         [self didFinishGame];
-        [self.defaults setObject:self.currentTimeLabel.text forKey:@"LastGameTime"];
-        [self.defaults setObject:self.currentTimeLabel.text forKey:@"BestTime"];
-        self.bestTimeLabel.text = [self.defaults objectForKey:@"BestTime"];
-        [self.defaults synchronize];
+        
+        //creates temporary float to store current time and checks for Best Time - if it is, then sets to memory
+        float timeForThisRound = self.ticks;
+        if (timeForThisRound < self.bestTime) {
+            self.bestTime = timeForThisRound;
+            self.bestTimeLabel.text = [NSString stringWithFormat:@"%f", self.bestTime];
+            [self.defaults setObject:self.bestTimeLabel.text forKey:@"BestTime"];
+            [self.defaults synchronize];
+
+        }
+        // saves state and resets the timer values
+        _ticks = 0.0;
+        [self createNewTimer];
+
     }
 }
+
+
 
 
 -(void)didFinishGame {
@@ -198,6 +214,9 @@
     [self.finishedGameAlert addAction:confirm];
     
     [self presentViewController:self.finishedGameAlert animated:true completion:nil];
+    
+    
+
     
 }
 
