@@ -62,14 +62,14 @@
 }
 
 - (void)initializeCards {
-
+    
     self.checkingCardsArray = [NSMutableArray new];
     self.cardsArray = [[NSMutableArray alloc] initWithObjects:
                        self.card1, self.card2, self.card3, self.card4,
                        self.card5, self.card6, self.card7, self.card8,
                        self.card9, self.card10, self.card11, self.card12,
                        self.card13, self.card14, self.card15, self.card16, nil];
-
+    
 }
 
 - (void)resetCards {
@@ -79,7 +79,6 @@
         card.delegate = self;
     }
 }
-
 
 - (void)shuffleCards {
     
@@ -96,44 +95,44 @@
     }
 }
 
-
-
-
 #pragma mark Game Play
 
--(void)checkTap:(Card *)imageView {
-
-    if (imageView.highlighted) {
-    [self.checkingCardsArray addObject:imageView];
-
-        if (self.checkingCardsArray.count == 2) {
-            Card *card = self.checkingCardsArray[0];
-            
-            if (imageView.cardID == card.cardID) {
-                imageView.highlighted = NO;
-                self.totalMatchedSets++;
-                self.totalMatchedSetsLabel.text = [NSString stringWithFormat:@"Total matched sets: %i", self.totalMatchedSets];
-                [self.checkingCardsArray removeAllObjects];
-                
-            } else {
-                card.highlighted = YES;
-                [self.checkingCardsArray removeAllObjects];
-            }
-            
-        } else if (self.checkingCardsArray.count == 1) {
-            imageView.highlighted = NO;
-        } else {
-            //do nothing
-        }
-        [self checkIfFinishedGame];
+- (void)checkTap:(Card *)card {
+    
+    if (card.highlighted) {
+        [self.checkingCardsArray addObject:card];
+        [self performMatchChecking:card];
     }
     
+    [self checkIfFinishedGame];
     
-    //this below can help us add in delays to cards turning back over
-    
-//    [self performSelector:<#(nonnull SEL)#> withObject:imageView afterDelay:3.0]
+    //    Implement to begin adding delays to cards turning back over
+    //    [self performSelector:@selector(____) withObject:imageView afterDelay:3.0]
     
 }
+
+
+- (void)performMatchChecking:(Card *)newestCard {
+    if (self.checkingCardsArray.count == 2) {
+        
+        Card *firstCard = self.checkingCardsArray[0];
+        
+        if (newestCard.cardID == firstCard.cardID) {
+            newestCard.highlighted = NO;
+            self.totalMatchedSets++;
+            self.totalMatchedSetsLabel.text = [NSString stringWithFormat:@"Total matched sets: %i", self.totalMatchedSets];
+            [self.checkingCardsArray removeAllObjects];
+        } else {
+            firstCard.highlighted = YES;
+            [self.checkingCardsArray removeAllObjects];
+        }
+        
+    } else {
+        newestCard.highlighted = NO;
+    }
+}
+
+
 
 #pragma mark - HighScores
 
@@ -211,7 +210,7 @@
         !self.card14.isHighlighted &&
         !self.card15.isHighlighted &&
         !self.card16.isHighlighted) {
-     
+        
         [self didFinishGame];
         
         //creates temporary float to store current time and checks for Best Time - if it is, then sets to memory
@@ -222,12 +221,12 @@
             self.bestTimeLabel.text = [NSString stringWithFormat:@"Best Time:%.01f", self.bestTime];
             [self.defaults setObject:self.bestTimeLabel.text forKey:@"BestTime"];
             [self.defaults synchronize];
-
+            
         }
         // saves state and resets the timer values
         _ticks = 0.0;
         [self createNewTimer];
-
+        
     }
 }
 
@@ -240,15 +239,15 @@
     UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Start New Game"
                                                       style:UIAlertActionStyleDestructive
                                                     handler:^(UIAlertAction * _Nonnull action) {
-        for (Card *card in self.cardsArray) {
-            card.highlighted = YES;
-        }
-        [self shuffleCards];
-    }];
+                                                        for (Card *card in self.cardsArray) {
+                                                            card.highlighted = YES;
+                                                        }
+                                                        [self shuffleCards];
+                                                    }];
     
     [self.finishedGameAlert addAction:confirm];
     [self presentViewController:self.finishedGameAlert animated:true completion:nil];
-      
+    
 }
 
 
