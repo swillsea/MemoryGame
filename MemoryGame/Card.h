@@ -19,4 +19,5 @@
 @property int cardID;
 @property BOOL hasSpun;
 @property int cardSize;
+@property int cardPadding;
 @end

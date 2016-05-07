@@ -11,13 +11,12 @@
 
 @interface ViewController () <CardDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *startNewGameButton;
+
 @property NSMutableArray *cardsArray;
 @property NSMutableArray *checkingCardsArray;
 @property UIAlertController *finishedGameAlert;
-@property (weak, nonatomic) IBOutlet UILabel *totalMatchedSetsLabel;
-@property int totalMatchedSets;
-@property CGFloat cardSize;
-@property CGFloat padding;
+
+
 @property (weak, nonatomic) IBOutlet Card *card1;
 @property (weak, nonatomic) IBOutlet Card *card2;
 @property (weak, nonatomic) IBOutlet Card *card3;
@@ -34,8 +33,12 @@
 @property (weak, nonatomic) IBOutlet Card *card14;
 @property (weak, nonatomic) IBOutlet Card *card15;
 @property (weak, nonatomic) IBOutlet Card *card16;
+
+@property int totalMatchedSets;
+@property (weak, nonatomic) IBOutlet UILabel *totalMatchedSetsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bestTimeLabel;
+
 @property NSTimer *timer;
 @property float ticks;
 @property float bestTime;
@@ -63,18 +66,9 @@
     //set up all cards
     self.checkingCardsArray = [NSMutableArray new];
     self.cardsArray = [[NSMutableArray alloc] initWithObjects: self.card1, self.card2, self.card3, self.card4, self.card5, self.card6, self.card7, self.card8, self.card9, self.card10, self.card11, self.card12, self.card13, self.card14, self.card15, self.card16, nil];
-//    for (Card *card in self.cardsArray) {
-//        card.layer.cornerRadius = 6;
-//        card.layer.masksToBounds = YES;
-//    }
 
     
-    //make sure they're all face down
-    for (Card *card in self.cardsArray) {
-        card.highlighted = YES;
-        //and make sure they all set their card delegate to 
-        card.delegate = self;
-    }
+    [self resetCards];
     
     //shuffle the cards
     [self shuffleCards];
@@ -92,6 +86,15 @@
                                                 selector: @selector(timerTick:)
                                                 userInfo: nil
                                                  repeats: YES];
+}
+
+- (void)resetCards {
+    //make sure they're all face down
+    for (Card *card in self.cardsArray) {
+        card.highlighted = YES;
+        //and make sure they all set their card delegate to
+        card.delegate = self;
+    }
 }
 
 //this gives us the right counter
@@ -151,6 +154,11 @@
         //do nothing
     }
     
+    
+    //this below can help us add in delays to cards turning back over
+    
+//    [self performSelector:<#(nonnull SEL)#> withObject:imageView afterDelay:3.0]
+    
 }
 
 - (IBAction)onResetButtonPressed:(UIButton *)sender {
@@ -161,6 +169,7 @@
     self.totalMatchedSets = 0;
     self.totalMatchedSetsLabel.text = [NSString stringWithFormat:@"Total matched sets: %i", self.totalMatchedSets];
     [self createNewTimer];
+    [self resetCards];
     
 }
 
@@ -175,6 +184,7 @@
         card.highlighted = YES;
     }
     [self shuffleCards];
+//    [self resetCards];
 }
 
 -(void)checkIfFinishedGame {

@@ -37,29 +37,29 @@
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan || gestureRecognizer.state == UIGestureRecognizerStateRecognized) {
         
         [self.delegate checkTap:self];
-//        [self spinCards];
+        [self spinCards];
     }
 }
 
-//-(void)spinCards{
-//    if (self.hasSpun) {
-//        [self spinIn];
-//    } else {
-//        [self spinOut];
-//    }
-//    self.hasSpun = !self.hasSpun;
-//}
-//
-//-(void)spinIn{
+-(void)spinCards{
+    if (self.hasSpun) {
+        [self spinIn];
+    } else {
+        [self spinOut];
+    }
+    self.hasSpun = !self.hasSpun;
+}
+
+-(void)spinIn{
 //    self.cardSize = 50;
 //    
 //    self.frame = CGRectMake(self.frame.size.width - (self.frame.size.width/4), self.frame.size.height - (self.frame.size.height/4), 0 , self.frame.size.width - (self.frame.size.width/4));
-//
-//}
-//
-//-(void)spinOut{
-//    
-//}
+
+}
+
+-(void)spinOut{
+    
+}
 
 
 
