@@ -16,7 +16,6 @@
 @property NSMutableArray *checkingCardsArray;
 @property UIAlertController *finishedGameAlert;
 
-
 @property (weak, nonatomic) IBOutlet Card *card1;
 @property (weak, nonatomic) IBOutlet Card *card2;
 @property (weak, nonatomic) IBOutlet Card *card3;
@@ -51,63 +50,38 @@
 
 #pragma mark Game Setup
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-
-    //allows us to save and load information that is permanently stored in the device memory, regardless of app state
-    self.defaults = [NSUserDefaults standardUserDefaults];
-    self.currentTimeLabel.text = [self.defaults objectForKey:@"LastGameTime"];
-    if ([self.defaults objectForKey:@"BestTime"]) {
-        self.bestTimeLabel.text = [self.defaults objectForKey:@"BestTime"];
-        self.bestTimeLabel.hidden = NO;
-    } else {
-        self.bestTime = 500.0;
-    }
-
-    //set up all cards
-    self.checkingCardsArray = [NSMutableArray new];
-    self.cardsArray = [[NSMutableArray alloc] initWithObjects: self.card1, self.card2, self.card3, self.card4, self.card5, self.card6, self.card7, self.card8, self.card9, self.card10, self.card11, self.card12, self.card13, self.card14, self.card15, self.card16, nil];
-
-    
+    [self initializeCards];
     [self resetCards];
-    
-    //shuffle the cards
     [self shuffleCards];
-    
-    self.startNewGameButton.layer.cornerRadius = 6;
-    self.startNewGameButton.layer.masksToBounds = YES;
-    
+    [self formatNewGameButton];
     [self createNewTimer];
+    [self checkOrSetHighScore];
     
 }
 
--(void)createNewTimer {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval: 0.1f
-                                                  target: self
-                                                selector: @selector(timerTick:)
-                                                userInfo: nil
-                                                 repeats: YES];
+- (void)initializeCards {
+
+    self.checkingCardsArray = [NSMutableArray new];
+    self.cardsArray = [[NSMutableArray alloc] initWithObjects:
+                       self.card1, self.card2, self.card3, self.card4,
+                       self.card5, self.card6, self.card7, self.card8,
+                       self.card9, self.card10, self.card11, self.card12,
+                       self.card13, self.card14, self.card15, self.card16, nil];
+
 }
 
 - (void)resetCards {
-    //make sure they're all face down
+    //make sure they're all face down and have their delage set properly
     for (Card *card in self.cardsArray) {
         card.highlighted = YES;
-        //and make sure they all set their card delegate to
         card.delegate = self;
     }
 }
 
-//this gives us the right counter
-- (void)timerTick:(NSTimer *)timer
-{
-    _ticks += 0.1;
-    double seconds = fmod(_ticks, 60.0);
-    double minutes = fmod(trunc(_ticks / 60.0), 60.0);
-    self.currentTimeLabel.text = [NSString stringWithFormat:@"Time: %02.0f:%04.1f", minutes, seconds];
-}
 
-
--(void)shuffleCards {
+- (void)shuffleCards {
     
     //shuffles the card array
     for (NSUInteger i = self.cardsArray.count; i > 1; i--) [self.cardsArray exchangeObjectAtIndex:i - 1 withObjectAtIndex:arc4random_uniform((u_int32_t)i)];
@@ -122,6 +96,9 @@
     }
 }
 
+
+
+
 #pragma mark Game Play
 
 -(void)checkTap:(Card *)imageView {
@@ -130,8 +107,8 @@
     [self.checkingCardsArray addObject:imageView];
 
         if (self.checkingCardsArray.count == 2) {
-            
             Card *card = self.checkingCardsArray[0];
+            
             if (imageView.cardID == card.cardID) {
                 imageView.highlighted = NO;
                 self.totalMatchedSets++;
@@ -149,9 +126,6 @@
             //do nothing
         }
         [self checkIfFinishedGame];
-
-    } else {
-        //do nothing
     }
     
     
@@ -160,6 +134,8 @@
 //    [self performSelector:<#(nonnull SEL)#> withObject:imageView afterDelay:3.0]
     
 }
+
+#pragma mark - HighScores
 
 - (IBAction)onResetButtonPressed:(UIButton *)sender {
     
@@ -173,21 +149,51 @@
     
 }
 
+- (void)createNewTimer {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval: 0.1f
+                                                  target: self
+                                                selector: @selector(timerTick:)
+                                                userInfo: nil
+                                                 repeats: YES];
+}
 
+//this gives us the right counter
+- (void)timerTick:(NSTimer *)timer {
+    _ticks += 0.1;
+    double seconds = fmod(_ticks, 60.0);
+    double minutes = fmod(trunc(_ticks / 60.0), 60.0);
+    self.currentTimeLabel.text = [NSString stringWithFormat:@"Time: %02.0f:%04.1f", minutes, seconds];
+}
+
+- (void)checkOrSetHighScore {
+    //allows us to save and load information that is permanently stored in the device memory, regardless of app state
+    self.defaults = [NSUserDefaults standardUserDefaults];
+    self.currentTimeLabel.text = [self.defaults objectForKey:@"LastGameTime"];
+    if ([self.defaults objectForKey:@"BestTime"]) {
+        self.bestTimeLabel.text = [self.defaults objectForKey:@"BestTime"];
+        self.bestTimeLabel.hidden = NO;
+    } else {
+        self.bestTime = 500.0;
+    }
+}
 
 
 
 #pragma mark Start New Game
+
+- (void)formatNewGameButton {
+    self.startNewGameButton.layer.cornerRadius = 6;
+    self.startNewGameButton.layer.masksToBounds = YES;
+}
 
 - (IBAction)startNewGamePressed:(UIButton *)sender {
     for (Card *card in self.cardsArray) {
         card.highlighted = YES;
     }
     [self shuffleCards];
-//    [self resetCards];
 }
 
--(void)checkIfFinishedGame {
+- (void)checkIfFinishedGame {
     
     if (!self.card1.isHighlighted &&
         !self.card2.isHighlighted &&
@@ -225,27 +231,24 @@
     }
 }
 
-
-
-
 -(void)didFinishGame {
     
-    self.finishedGameAlert = [UIAlertController alertControllerWithTitle:@"Well done!" message:@"Want to play again?" preferredStyle:UIAlertControllerStyleAlert];
+    self.finishedGameAlert = [UIAlertController alertControllerWithTitle:@"Well done!"
+                                                                 message:@"Want to play again?"
+                                                          preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Start New Game" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Start New Game"
+                                                      style:UIAlertActionStyleDestructive
+                                                    handler:^(UIAlertAction * _Nonnull action) {
         for (Card *card in self.cardsArray) {
             card.highlighted = YES;
         }
         [self shuffleCards];
     }];
+    
     [self.finishedGameAlert addAction:confirm];
-    
     [self presentViewController:self.finishedGameAlert animated:true completion:nil];
-    
-    
-
-    
+      
 }
 
 
