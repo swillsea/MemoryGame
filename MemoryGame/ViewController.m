@@ -75,7 +75,7 @@
 - (void)resetCards {
     //make sure they're all face down and have their delage set properly
     for (Card *card in self.cardsArray) {
-        card.highlighted = YES;
+        card.highlighted = false;
         card.delegate = self;
     }
 }
@@ -89,7 +89,8 @@
     for (int i = 0; i < 16; i++) {
         Card *card = [Card new];
         card = [self.cardsArray objectAtIndex:i];
-        card.image = [UIImage imageNamed:[NSString stringWithFormat:@"%i", ((i + (i +1)% 2)/2)+1]];
+        card.highlightedImage = [UIImage imageNamed:[NSString stringWithFormat:@"%i", ((i + (i +1)% 2)/2)+1]];
+        card.image = [UIImage imageNamed:@"backfade"];
         card.cardID = ((i + (i +1)% 2)/2)+1;
         
     }
@@ -99,15 +100,12 @@
 
 - (void)checkTap:(Card *)card {
     
-    if (card.highlighted) {
+    if (!card.highlighted) {
         [self.checkingCardsArray addObject:card];
         [self performMatchChecking:card];
     }
     
     [self checkIfFinishedGame];
-    
-    //    Implement to begin adding delays to cards turning back over
-    //    [self performSelector:@selector(____) withObject:imageView afterDelay:3.0]
     
 }
 
@@ -118,18 +116,23 @@
         Card *firstCard = self.checkingCardsArray[0];
         
         if (newestCard.cardID == firstCard.cardID) {
-            newestCard.highlighted = NO;
+            newestCard.highlighted = true;
             self.totalMatchedSets++;
             self.totalMatchedSetsLabel.text = [NSString stringWithFormat:@"Total matched sets: %i", self.totalMatchedSets];
             [self.checkingCardsArray removeAllObjects];
         } else {
-            firstCard.highlighted = YES;
+            firstCard.highlighted = false;
             [self.checkingCardsArray removeAllObjects];
         }
         
     } else {
-        newestCard.highlighted = NO;
+        newestCard.highlighted = true;
     }
+    
+    
+    //    Implement to begin adding delays to cards turning back over
+    //    [self performSelector:@selector(____) withObject:imageView afterDelay:3.0]
+
 }
 
 
@@ -187,29 +190,29 @@
 
 - (IBAction)startNewGamePressed:(UIButton *)sender {
     for (Card *card in self.cardsArray) {
-        card.highlighted = YES;
+        card.highlighted = false;
     }
     [self shuffleCards];
 }
 
 - (void)checkIfFinishedGame {
     
-    if (!self.card1.isHighlighted &&
-        !self.card2.isHighlighted &&
-        !self.card3.isHighlighted &&
-        !self.card4.isHighlighted &&
-        !self.card5.isHighlighted &&
-        !self.card6.isHighlighted &&
-        !self.card7.isHighlighted &&
-        !self.card8.isHighlighted &&
-        !self.card9.isHighlighted &&
-        !self.card10.isHighlighted &&
-        !self.card11.isHighlighted &&
-        !self.card12.isHighlighted &&
-        !self.card13.isHighlighted &&
-        !self.card14.isHighlighted &&
-        !self.card15.isHighlighted &&
-        !self.card16.isHighlighted) {
+    if (self.card1.isHighlighted &&
+        self.card2.isHighlighted &&
+        self.card3.isHighlighted &&
+        self.card4.isHighlighted &&
+        self.card5.isHighlighted &&
+        self.card6.isHighlighted &&
+        self.card7.isHighlighted &&
+        self.card8.isHighlighted &&
+        self.card9.isHighlighted &&
+        self.card10.isHighlighted &&
+        self.card11.isHighlighted &&
+        self.card12.isHighlighted &&
+        self.card13.isHighlighted &&
+        self.card14.isHighlighted &&
+        self.card15.isHighlighted &&
+        self.card16.isHighlighted) {
         
         [self didFinishGame];
         
@@ -240,7 +243,7 @@
                                                       style:UIAlertActionStyleDestructive
                                                     handler:^(UIAlertAction * _Nonnull action) {
                                                         for (Card *card in self.cardsArray) {
-                                                            card.highlighted = YES;
+                                                            card.highlighted = false;
                                                         }
                                                         [self shuffleCards];
                                                     }];
